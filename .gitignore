@@ -1,0 +1,7 @@
+dist/*
+!dist/.gitkeep
+
+work/*
+!work/.gitkeep
+
+.DS_Store

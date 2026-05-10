@@ -1,0 +1,14 @@
+{
+  name: "awww"
+  script: "build-scripts/build-awww.nu"
+  source: {
+    repo: "https://codeberg.org/LGFae/awww.git"
+    ref: "main"
+  }
+  build: {
+    kind: "rust"
+  }
+  output: {
+    artifact: "awww-{target_arch}-fedora{fedora_version}.tar.gz"
+  }
+}

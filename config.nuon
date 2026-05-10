@@ -1,0 +1,10 @@
+{
+  fedora_version: "44"
+  base_image: "registry.fedoraproject.org/fedora:44"
+  target_arch: "x86_64"
+  release_tag: "assets-v1"
+  dist_dir: "dist"
+  work_root: "work"
+  manifests_dir: "manifests"
+  anyzig_url: "https://github.com/marler8997/anyzig/releases/download/v2026_03_26/anyzig-x86_64-linux.tar.gz"
+}

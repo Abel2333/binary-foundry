@@ -1,0 +1,15 @@
+{
+  name: "tree-sitter"
+  script: "build-scripts/build-tree-sitter.nu"
+  source: {
+    repo: "https://github.com/tree-sitter/tree-sitter.git"
+    ref: "release-0.26"
+  }
+  build: {
+    kind: "zig+rustr"
+    zig_version: "0.15.2"
+  }
+  output: {
+    artifact: "tree-sitter-{target_arch}-fedora{fedora_version}.tar.gz"
+  }
+}

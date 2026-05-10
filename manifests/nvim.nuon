@@ -1,0 +1,15 @@
+{
+  name: "nvim"
+  script: "build-scripts/build-nvim.nu"
+  source: {
+    repo: "https://github.com/neovim/neovim.git"
+    ref: "release-0.12"
+  }
+  build: {
+    kind: "zig"
+    zig_version: "0.15.2"
+  }
+  output: {
+    artifact: "nvim-{target_arch}-fedora{fedora_version}.tar.gz"
+  }
+}

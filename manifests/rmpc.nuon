@@ -1,0 +1,14 @@
+{
+  name: "rmpc"
+  script: "build-scripts/build-rmpc.nu"
+  source: {
+    repo: "https://github.com/mierak/rmpc.git"
+    ref: "master"
+  }
+  build: {
+    kind: "rust"
+  }
+  output: {
+    artifact: "rmpc-{target_arch}-fedora{fedora_version}.tar.gz"
+  }
+}
