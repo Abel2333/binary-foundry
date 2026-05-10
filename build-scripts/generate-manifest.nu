@@ -14,7 +14,7 @@ def main [
   let config = (load_config)
   let fedora_version = ($fedora_version | default $config.fedora_version)
   let target_arch = ($target_arch | default $config.target_arch)
-  let release_tag = ($release_tag | default $config.release_tag)
+  let release_tag = ($release_tag | default "snapshot-local")
   let dist_dir = ($config.dist_dir)
 
   let assets = (

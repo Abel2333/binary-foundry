@@ -8,6 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+    env:
+      RELEASE_TAG: dev-${{ github.sha }}
 
     steps:
       - name: Check out repository
@@ -20,10 +22,10 @@ jobs:
         run: podman --version
 
       - name: Build all assets
-        run: nu build-scripts/run-build.nu --all
+        run: nu build-scripts/run-build.nu --all --release-tag ${{ env.RELEASE_TAG }}
 
       - name: Generate manifest
-        run: nu build-scripts/generate-manifest.nu
+        run: nu build-scripts/generate-manifest.nu --release-tag ${{ env.RELEASE_TAG }}
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4

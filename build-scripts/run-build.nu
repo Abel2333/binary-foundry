@@ -14,7 +14,7 @@ def main [
   let base_image = ($base_image | default $config.base_image)
   let fedora_version = ($fedora_version | default $config.fedora_version)
   let target_arch = ($target_arch | default $config.target_arch)
-  let release_tag = ($release_tag | default $config.release_tag)
+  let release_tag = ($release_tag | default "snapshot-local")
   let repo_root = (packaging_root)
   let dist_dir = ([$repo_root ($config.dist_dir)] | path join)
   let work_root = ([$repo_root ($config.work_root)] | path join)

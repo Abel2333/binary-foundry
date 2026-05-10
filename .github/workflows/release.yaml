@@ -7,12 +7,17 @@ on:
         description: Release tag to create
         required: true
         type: string
+  push:
+    tags:
+      - "assets-v*"
 
 jobs:
   release:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    env:
+      RELEASE_TAG: ${{ inputs.release_tag || github.ref_name }}
 
     steps:
       - name: Check out repository
@@ -25,15 +30,15 @@ jobs:
         run: podman --version
 
       - name: Build all assets
-        run: nu build-scripts/run-build.nu --all --release-tag ${{ inputs.release_tag }}
+        run: nu build-scripts/run-build.nu --all --release-tag ${{ env.RELEASE_TAG }}
 
       - name: Generate manifest
-        run: nu build-scripts/generate-manifest.nu --release-tag ${{ inputs.release_tag }}
+        run: nu build-scripts/generate-manifest.nu --release-tag ${{ env.RELEASE_TAG }}
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ inputs.release_tag }}
+          tag_name: ${{ env.RELEASE_TAG }}
           files: |
             dist/*.tar.gz
             dist/*.sha256
