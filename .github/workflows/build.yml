@@ -1,0 +1,33 @@
+name: Build Assets
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install Nushell
+        uses: hustcer/setup-nu@v3
+
+      - name: Verify Podman
+        run: podman --version
+
+      - name: Build all assets
+        run: nu build-scripts/run-build.nu --all
+
+      - name: Generate manifest
+        run: nu build-scripts/generate-manifest.nu
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: binary-foundry-dist
+          path: dist/*
+          if-no-files-found: error

@@ -1,0 +1,40 @@
+name: Release Assets
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        description: Release tag to create
+        required: true
+        type: string
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install Nushell
+        uses: hustcer/setup-nu@v3
+
+      - name: Verify Podman
+        run: podman --version
+
+      - name: Build all assets
+        run: nu build-scripts/run-build.nu --all --release-tag ${{ inputs.release_tag }}
+
+      - name: Generate manifest
+        run: nu build-scripts/generate-manifest.nu --release-tag ${{ inputs.release_tag }}
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ inputs.release_tag }}
+          files: |
+            dist/*.tar.gz
+            dist/*.sha256
+            dist/manifest.json
