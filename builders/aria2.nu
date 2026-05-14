@@ -11,6 +11,7 @@ def main [
   --release-tag: string
 ] {
   let manifest = (asset_config "aria2")
+  let make_jobs = ((sys cpu | length) | into string)
   install_autotools_deps [c-ares-devel libssh2-devel libxml2-devel openssl-devel sqlite-devel zlib-devel]
 
   let repo_dir = ([$work_dir "aria2"] | path join)
@@ -27,7 +28,7 @@ def main [
     --with-openssl
   ] [
     -j
-    ((sys cpu | get cores) | into string)
+    $make_jobs
   ]
 
   do {
