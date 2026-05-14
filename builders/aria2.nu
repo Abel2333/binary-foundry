@@ -33,7 +33,9 @@ def main [
 
   do {
     cd $repo_dir
-    ^make install DESTDIR=$stage_dir
+    with-env { DESTDIR: $stage_dir } {
+      ^make install
+    }
   }
 
   package_stage $stage_dir $dist_file
