@@ -1,0 +1,14 @@
+{
+  name: "aria2"
+  script: "builders/aria2.nu"
+  source: {
+    repo: "https://github.com/aria2/aria2.git"
+    ref: "release-1.37.0"
+  }
+  build: {
+    kind: "autotools"
+  }
+  output: {
+    artifact: "aria2-{target_arch}-fedora{fedora_version}.tar.gz"
+  }
+}

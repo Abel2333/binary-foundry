@@ -1,6 +1,6 @@
 {
   name: "awww"
-  script: "build-scripts/build-awww.nu"
+  script: "builders/awww.nu"
   source: {
     repo: "https://codeberg.org/LGFae/awww.git"
     ref: "main"

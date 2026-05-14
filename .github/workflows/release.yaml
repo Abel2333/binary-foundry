@@ -30,10 +30,10 @@ jobs:
         run: podman --version
 
       - name: Build all assets
-        run: nu build-scripts/run-build.nu --all --release-tag ${{ env.RELEASE_TAG }}
+        run: nu scripts/run-build.nu --all --release-tag ${{ env.RELEASE_TAG }}
 
       - name: Generate manifest
-        run: nu build-scripts/generate-manifest.nu --release-tag ${{ env.RELEASE_TAG }}
+        run: nu scripts/generate-manifest.nu --release-tag ${{ env.RELEASE_TAG }}
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2

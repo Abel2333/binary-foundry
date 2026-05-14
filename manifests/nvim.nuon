@@ -1,6 +1,6 @@
 {
   name: "nvim"
-  script: "build-scripts/build-nvim.nu"
+  script: "builders/nvim.nu"
   source: {
     repo: "https://github.com/neovim/neovim.git"
     ref: "release-0.12"

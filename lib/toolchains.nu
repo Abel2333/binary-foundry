@@ -18,6 +18,15 @@ export def install_zig_deps [extra_deps: list<string> = []] {
   ^dnf install -y ...$deps
 }
 
+export def install_autotools_deps [extra_deps: list<string> = []] {
+  let deps = (
+    [[autoconf automake gcc gcc-c++ gettext-devel git libtool make pkgconf-pkg-config tar] $extra_deps]
+      | flatten
+      | uniq
+  )
+  ^dnf install -y ...$deps
+}
+
 export def prepare_anyzig [work_dir: string] {
   let config = (load_config)
   let archive = ([$work_dir "anyzig-x86_64-linux.tar.gz"] | path join)
@@ -82,5 +91,18 @@ export def run_rust_build [
   do {
     cd $repo_dir
     ^cargo ...$build_args
+  }
+}
+
+export def run_autotools_build [
+  repo_dir: string,
+  configure_args: list<string> = [],
+  make_args: list<string> = []
+] {
+  do {
+    cd $repo_dir
+    ^autoreconf -i
+    ^./configure ...$configure_args
+    ^make ...$make_args
   }
 }

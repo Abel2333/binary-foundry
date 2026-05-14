@@ -1,6 +1,6 @@
 {
   name: "rmpc"
-  script: "build-scripts/build-rmpc.nu"
+  script: "builders/rmpc.nu"
   source: {
     repo: "https://github.com/mierak/rmpc.git"
     ref: "master"

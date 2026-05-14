@@ -1,6 +1,6 @@
 {
   name: "tree-sitter"
-  script: "build-scripts/build-tree-sitter.nu"
+  script: "builders/tree-sitter.nu"
   source: {
     repo: "https://github.com/tree-sitter/tree-sitter.git"
     ref: "release-0.26"
