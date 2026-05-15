@@ -5,12 +5,9 @@ export def fail [msg: string] {
 export def packaging_root [] {
   let cwd = ($env.PWD)
   let local_root = ([$cwd "config.nuon"] | path join)
-  let nested_root = ([$cwd "packaging" "config.nuon"] | path join)
 
   if ($local_root | path exists) {
     $cwd
-  } else if ($nested_root | path exists) {
-    ([$cwd "packaging"] | path join)
   } else {
     fail "could not locate packaging root; expected config.nuon in the current directory or ./packaging"
   }
