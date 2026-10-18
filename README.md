@@ -29,6 +29,7 @@ The output is a set of tarballs that can be unpacked directly into `/` on a targ
 - `aria2`
 - `nvim`
 - `rmpc`
+- `subsmith`
 - `tree-sitter`
 
 ## Usage

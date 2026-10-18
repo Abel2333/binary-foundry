@@ -1,0 +1,14 @@
+{
+  name: "subsmith"
+  script: "builders/subsmith.nu"
+  source: {
+    repo: "https://github.com/Abel2333/subsmith.git"
+    ref: "v0.2.0"
+  }
+  build: {
+    kind: "rust"
+  }
+  output: {
+    artifact: "subsmith-{target_arch}-fedora{fedora_version}.tar.gz"
+  }
+}
